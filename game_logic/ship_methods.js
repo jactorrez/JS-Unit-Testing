@@ -2,7 +2,6 @@ function checkForShip(player, coordinates){
 	var shipPresent, ship;
 
 	for(let x = 0; x < player.ships.length; x++){
-
 		ship = player.ships[x];
 
 		shipPresent = ship.locations.filter(function(realCoordinates){

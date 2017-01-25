@@ -5,10 +5,10 @@ describe("checkForShip", function(){
 	var player;
 
 	before(function(){
-		var player = {
+		player = {
 			ships: [
 				{ 
-					locations: [[0,1],[0,2]]
+					locations: [[0,0],[0,1]]
 				},
 				{
 					locations: [[3,2], [3,3]]
@@ -18,7 +18,7 @@ describe("checkForShip", function(){
 				}
 			]
 		}
-	})
+	});
 
 	it("should correctly report no ship at a given players coordinates", function(){
 		expect(checkForShip(player, [9,9])).to.be.false;
@@ -39,11 +39,10 @@ describe("checkForShip", function(){
 	it("should handle checking multiple ships", function(){
 
 		expect(checkForShip(player, [0,1])).to.deep.equal(player.ships[0]); 
-		expect(checkForShip(player, [0,2])).to.deep.equal(player.ships[0]); 
-		expect(checkForShip(player, [3,2])).to.deep.equal(player.ships[0]); 
-		expect(checkForShip(player, [3,3])).to.deep.equal(player.ships[0]); 
+		expect(checkForShip(player, [3,2])).to.deep.equal(player.ships[1]); 
+		expect(checkForShip(player, [3,3])).to.deep.equal(player.ships[1]); 
 		expect(checkForShip(player, [9,9])).to.be.false;
-		expect(checkForShip(player, [2,3])).to.be.deep.equal(player.ships[0]); 
+		expect(checkForShip(player, [2,3])).to.be.deep.equal(player.ships[2]); 
 	});
 });
 
@@ -64,7 +63,6 @@ describe('damageShip', function(){
 	});
 });
 
-// WRITE TEST SUITE FOR A USER TO FIRE 
 
 describe('fire', function(){
 
@@ -72,7 +70,7 @@ describe('fire', function(){
 	var player;
 
 	beforeEach(function(){
-		var player = {
+		player = {
 			ships: [
 				{
 					locations: [[0,0]],
@@ -83,10 +81,8 @@ describe('fire', function(){
 	});
 
 	it("should record damage on the given players ship at a given coordinate", function(){
-		
 		fire(player, [0,0]);
-
-		expect(player.ships[0].damage).to.deep.equal([0,0]);
+		expect(player.ships[0].damage[0]).to.deep.equal([0,0]);
 	});
 
 	it("should not record damage if no ship found with given coordinates", function(){
@@ -100,7 +96,8 @@ describe('fire', function(){
 		}
 
 		fire(player, [9,9]);
-
 		expect(player.ships[0].damage).to.be.empty;
 	});
+
+
 })
