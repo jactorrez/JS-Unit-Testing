@@ -24,20 +24,17 @@ describe("checkForShip", function(){
 		expect(checkForShip(player, [9,9])).to.be.false;
 	});
 
-
 	it("should correctly report a ship exists at a given players coordinates", function(){
 		expect(checkForShip(player, [0,0])).to.deep.equal(player.ships[0]); 
 	});
 
 	it("should handle ships located at more than one coordinate", function(){
-		
 		expect(checkForShip(player, [0,1])).to.deep.equal(player.ships[0]); 
 		expect(checkForShip(player, [0,0])).to.deep.equal(player.ships[0]); 
 		expect(checkForShip(player, [0,9])).to.be.false; 
 	});
 
 	it("should handle checking multiple ships", function(){
-
 		expect(checkForShip(player, [0,1])).to.deep.equal(player.ships[0]); 
 		expect(checkForShip(player, [3,2])).to.deep.equal(player.ships[1]); 
 		expect(checkForShip(player, [3,3])).to.deep.equal(player.ships[1]); 
@@ -65,7 +62,6 @@ describe('damageShip', function(){
 
 
 describe('fire', function(){
-
 	var fire = require("../game_logic/ship_methods").fire;
 	var player;
 
@@ -85,7 +81,7 @@ describe('fire', function(){
 		expect(player.ships[0].damage[0]).to.deep.equal([0,0]);
 	});
 
-	it("should not record damage if no ship found with given coordinates", function(){
+	it("should NOT record damage if no ship found with given coordinates", function(){
 		var player = {
 			ships: [
 				{
